@@ -1,9 +1,5 @@
 import sys
-
-
-def load_input(fname):
-    with open(fname, 'r') as f:
-        return f.read().splitlines()
+from helpers import load_input
 
 
 def calc_row(rng, fb):
