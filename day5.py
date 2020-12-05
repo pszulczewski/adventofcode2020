@@ -2,7 +2,7 @@ import sys
 from helpers import load_input
 
 
-def calc_row(rng, fb):
+def split_row(rng, fb):
     le = len(rng)
     if fb == 'F':
         return rng[:le // 2]
@@ -12,7 +12,7 @@ def calc_row(rng, fb):
         print("Nor F or B")
 
 
-def calc_col(rng, rl):
+def split_col(rng, rl):
     le = len(rng)
     if rl == 'L':
         return rng[:le // 2]
@@ -23,19 +23,19 @@ def calc_col(rng, rl):
 
 
 def calc_code(code):
-    x = range(128)
-    y = range(8)
-    for i, let in enumerate(code[0:7]):
+    x = [x for x in range(128)]
+    y = [y for y in range(8)]
+    for i, char in enumerate(code[0:7]):
         if i == 0:
-            row = calc_row(x, let)
+            row = split_row(x, char)
         else:
-            row = calc_row(row, let)
+            row = split_row(row, char)
 
-    for i, let in enumerate(code[7:10]):
+    for i, char in enumerate(code[7:10]):
         if i == 0:
-            col = calc_col(y, let)
+            col = split_col(y, char)
         else:
-            col = calc_col(col, let)
+            col = split_col(col, char)
     sid = row[0] * 8 + col[0]
     return row[0], col[0], sid
 
